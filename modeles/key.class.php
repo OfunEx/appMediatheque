@@ -86,11 +86,12 @@ class Key{
         echo '</div>';
     }
     
-    public static function ajouterKey($terme,$com){
+    public static function ajouterKey($unTerme,$unCom){
         $bdd = connect();
-
+        $terme = $bdd->quote($unTerme);
+        $com = $bdd->quote($unCom);
         $requete = $bdd->exec("INSERT INTO `key`(`id_key`, `terme`, `commentaire`) "
-                . "VALUES ('','$terme','$com')");
+                . "VALUES ('',$terme,$com)");
 
         if($requete){
             return TRUE;
