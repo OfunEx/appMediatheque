@@ -116,13 +116,18 @@ textArea {
 
 .connexFloat{
     float: right;
+    margin-right: 5%;
 }
 
 #accordionConnex{
     /*padding: 10px;*/
     width: 350px;
     height: 220px;
+
 }
+
+
+
 
 /*_____________________________| Elements du menu |_____________________________*/
 
