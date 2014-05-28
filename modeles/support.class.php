@@ -39,6 +39,30 @@ class Support{
         }
     }
 
+    public static function supportPage($numPage){
+        
+        $sql = "SELECT * from support LIMIT " . $numPage * 6 . ", 6";
+        $bdd = connect();
+        $requete = $bdd->query($sql);
+
+
+        while($value = $requete -> fetch(PDO::FETCH_ASSOC)){
+            echo "<div class=\"fiche_support\">"
+            . "<div class=\"titre_fiche\">".$value['titre_support']."</div>"
+            . "<p>Type du support : ".$value['type_support']." ; "
+            . "Format : ".$value['type_format']." ; "
+            . "Contenu : ".$value['type_contenu']." / "
+            . "Date de publication : ".$value['date_publication']."<br>"
+            . "".$value['type_createur']." : ".$value['createur_support']."<br>"        
+            . "Nombre d'exemplaire disponible : ".$value['nbExemplaireDispo'].", "
+            . "Temps d'emprunt maximum : ".$value['tps_emprunt_max']."</p>"
+            . "<p>Description :<br>".$value['description_support']."</p></div>";
+        }
+
+
+
+    }
+
     public static function ajouterSupport($titreS,$typeS,$typeF,$typeC,$dateP,$auteurS,$typeA,$descri,$nbEx,$tps){
         $bdd = connect();
 
@@ -60,6 +84,20 @@ class Support{
     public static function supprimerSupport(){
         
     }
+
+    public static function nombreSupport(){
+        $sql = "SELECT COUNT(*) AS nbSupport FROM support";
+        $bdd = connect();
+        $requete = $bdd->query($sql);
+
+
+       $value = $requete -> fetch(PDO::FETCH_ASSOC);
+       
+       return $value["nbSupport"];
+        
+    }
+
+    
 }
 
 ?>

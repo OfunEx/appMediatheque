@@ -107,6 +107,39 @@ class Key{
 //    public static function supprimerKey(){
 //        
 //    }
+
+
+    public static function findKey($query){
+
+        $sql = "SELECT terme FROM `key` WHERE terme='" . $query . "'";
+        $bdd = connect();
+        $requete = $bdd -> query($sql);
+
+        return $requete -> fetch(PDO::FETCH_ASSOC)["terme"];
+
+    }
+
+    public static function findSuggestedKey($query){
+
+        $sql = "SELECT terme FROM `key` WHERE terme LIKE '%" . $query . "%'";
+        $bdd = connect();
+        $requete = $bdd -> query($sql);
+
+        $res = null;
+        $i = 0;
+
+
+        while($value = $requete -> fetch(PDO::FETCH_ASSOC)){
+
+            $res[$i] = $value["terme"];
+            $i++;
+
+        }
+        
+        return $res;
+
+    }
+
 }
 
 ?>
