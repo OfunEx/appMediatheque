@@ -18,7 +18,7 @@ class Link{
 
 
 	public static function findSupportsByKey($key){
-
+        //cherche tout les supports possédant le mot clé entré en paramètre
         $sql = "SELECT s.id_support , titre_support, type_support, type_format,type_contenu, date_publication, createur_support, type_createur, 
         							description_support, nbExemplaire, nbExemplaireDispo, nb_consultation, tps_emprunt_max 
         		FROM `key` INNER JOIN link ON key.id_key = link.id_key 

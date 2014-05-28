@@ -21,7 +21,33 @@ class User{
         $this->pass_user = $pass;
         $this->level_user = $level;
     }
-    
+
+
+    public static function emailExist($unEmail){
+        //vérifie si un email existe déjà dans la base de donnée
+
+
+    }
+
+    public static function idCExist(){
+        //vérifie si un identifiant existe déjà dans la base de donnée
+
+
+
+    }
+
+    public static function addUser($prenom,$nom,$date,$mail,$idC,$pass,$level){
+        //ajoute un utilisateur
+
+        
+        $sql = "INSERT INTO `media`.`user` (`id_user`, `prenom_user`, `nom_user`, `date_user`, 
+                                            `mail_user`, `idconnex_user`, `pass_user`, `level_user`) 
+                VALUES (NULL, '".$prenom."', '".$nom."', '".$date."', '".$mail."', '".$idC."', '".$pass."', '".$level."');";
+        $bdd = connect();
+        $requete = $bdd -> query($sql);
+
+    }
+
     
 }
 
