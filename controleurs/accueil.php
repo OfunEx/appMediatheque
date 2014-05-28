@@ -4,10 +4,13 @@
  * Controleurs
  */
 
-//On inclut le modele
-//pas nécessaire pour cette page
-//aucun traitement
-//include('modeles/accueil.php');
+
+include('modeles/dbconnexion.php');
+
+//On inclut les modèles
+require_once("modeles/link.class.php");
+require_once('modeles/support.class.php');
+require_once('modeles/key.class.php');
 
 //On inclut la vue
 include('vues/accueil.php');
