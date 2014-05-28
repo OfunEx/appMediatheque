@@ -4,7 +4,7 @@
 <div id ="zone_de_texte">
 <?php include("vues/menu/menu.php"); ?>
 <br>
-<h1>Bienvenue Visiteur</h1>
+<div class="titre_partie"><h1>Bienvenue Visiteur</h1></div>
 
 
 	<form method ="get" action="" id="search">
