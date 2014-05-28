@@ -114,8 +114,8 @@ class Key{
         $sql = "SELECT terme FROM `key` WHERE terme='" . $query . "'";
         $bdd = connect();
         $requete = $bdd -> query($sql);
-
-        return $requete -> fetch(PDO::FETCH_ASSOC)["terme"];
+        $value = $requete -> fetch(PDO::FETCH_ASSOC);
+        return $value["terme"];
 
     }
 
