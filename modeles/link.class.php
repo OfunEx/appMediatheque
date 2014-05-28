@@ -13,19 +13,10 @@ class Link{
             $this->id_support = $idSup;
             $this->$id_key = $idKey;
 
-<<<<<<< HEAD
     }
     
     public static function findSupportsByKey($key){
-
-=======
-	}
-
-
-
-	public static function findSupportsByKey($key){
         //cherche tout les supports possédant le mot clé entré en paramètre
->>>>>>> cfa09fcf07ef7cbfd13bc3b2df2fcc7add8b3d5a
         $sql = "SELECT s.id_support , titre_support, type_support, type_format,type_contenu, date_publication, createur_support, type_createur, 
                                                                 description_support, nbExemplaire, nbExemplaireDispo, nb_consultation, tps_emprunt_max 
                         FROM `key` INNER JOIN link ON key.id_key = link.id_key 
