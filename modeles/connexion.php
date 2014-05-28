@@ -23,7 +23,8 @@ function recup_donnees_user($login,$pass)
             ";
     $bdd = connect();
     $requete = $bdd -> query($sql);
-    return $requete;
+    $desDonnees = $requete -> fetch(PDO::FETCH_ASSOC);
+    return $desDonnees;
 }
 
 function recup_niveau($login){

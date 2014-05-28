@@ -19,24 +19,35 @@
     if ($mdp['pass_user'] == $pass_sha1){
         
         $niveau = recup_niveau($_POST['login']);
-        echo 'je suis passer';
+        
         if($niveau['level_user'] == 1){
 
             $requete_donnees = recup_donnees_user($_POST['login'],$pass_sha1);
-
-            while ($desDonnees = $requete_donnees -> fetch(PDO::FETCH_ASSOC)) {
-            $user = new User($desDonnees);
-            }
+            $idU = $desDonnees['id_user'];
+            $prenom = $desDonnees['prenom_user'];
+            $nom = $desDonnees['nom_user'];
+            $date = $desDonnees['date_user'];
+            $mail = $desDonnees['mail_user'];
+            $idC = $desDonnees['idconnex_user'];
+            $pass = $desDonnees['pass_user'];
+            $level = $desDonnees['level_user'];
+            $user = new User($idU, $prenom, $nom, $date, $mail, $idC, $pass, $level);
+            
 
             header('Location: index.php?page1=accueil_user');
         }
         elseif ($niveau['level_user'] == 2){
 
-            $requete_donnees = recup_donnees_user($_POST['login']);
-
-            while ($desDonnees = $requete_donnees -> fetch(PDO::FETCH_ASSOC)) {
-            $user = new Admin($desDonnees);
-            }
+            $desDonnees = recup_donnees_user($_POST['login'],$pass_sha1);
+            $idU = $desDonnees['id_user'];
+            $prenom = $desDonnees['prenom_user'];
+            $nom = $desDonnees['nom_user'];
+            $date = $desDonnees['date_user'];
+            $mail = $desDonnees['mail_user'];
+            $idC = $desDonnees['idconnex_user'];
+            $pass = $desDonnees['pass_user'];
+            $level = $desDonnees['level_user'];
+            $user = new Admin($idU, $prenom, $nom, $date, $mail, $idC, $pass, $level);
 
             header('Location: index.php?page2=accueil_admin');
         }

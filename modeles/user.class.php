@@ -11,7 +11,7 @@ class User{
     protected $pass_user;
     protected $level_user;
 
-    public function __construct($idU,$prenom,$nom,$date,$mail,$idC,$pass,$level) {
+    public function User($idU,$prenom,$nom,$date,$mail,$idC,$pass,$level) {
         $this->id_user = $idU;
         $this->prenom_user = $prenom;
         $this->nom_user = $nom;
