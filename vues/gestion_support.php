@@ -5,7 +5,13 @@ $(function() {
     });
     
     $("#tabs").tabs();
-    $("#dateP").datepicker();
+    $("#dateP").datepicker({
+        changeMonth : true,
+        changeYear : true
+    }).
+    datepicker("option","showAnim","slideDown").
+    datepicker("option","dateFormat","yy-mm-dd");
+
     $("#submitAjouter").button();
 });
 </script>
