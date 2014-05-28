@@ -12,14 +12,13 @@ $(function() {
 <div id="zone_de_texte">
     <?php include("vues/menu/menu2.php");?>
     <br>
-    <h1>Ajouter un mot clé</h1>
+    <div class="titre_partie"><h1>Ajouter un mot clé</h1></div>
     
     <div id="tabs">
         <ul>
             <li><a href="#tabs-1">Consulter</a></li>
             <li><a href="#tabs-2">Ajouter</a></li>
-            <li><a href="#tabs-3">Modifier</a></li>
-            <li><a href="#tabs-4">Supprimer</a></li>
+            <li><a href="#tabs-3">Modifier et Supprimer</a></li>
         </ul>
         <div id="tabs-1">
 
@@ -47,13 +46,9 @@ $(function() {
             </div>
         </div>
         <div id="tabs-3">
-            <p>Modifier</p>
-            <form method="POST" action="">
-
-            </form>
-        </div>
-        <div id="tabs-4">
-            <p>Supprimer</p>
+            <p>Modifier et Supprimer</p>
+            <div></div>
+            
             <form method="POST" action="">
 
             </form>

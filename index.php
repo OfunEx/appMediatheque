@@ -3,11 +3,24 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="CSS/style.css" rel="stylesheet" type="text/css"/>
-
+        
+        <!--jQuery-->
         <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+        
+        <!--jQuery UI-->
         <script type="text/javascript" src="js/jquery-ui-1.10.4.custom.js"></script>
         <script type="text/javascript" src="js/jquery-ui-1.10.4.custom.min.js"></script>
         <link href="CSS/custom-theme/jquery-ui-1.10.4.custom.css" rel="stylesheet">
+        
+        <!--DataTables-->
+        <script type="text/javascript" src="js/jquery.dataTables.js"></script>
+        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+        <link href="CSS/jquery.dataTables.css" rel="stylesheet">
+        <link href="CSS/jquery.dataTables.min.css" rel="stylesheet">
+        <link href="CSS/jquery.dataTables_themeroller.css" rel="stylesheet">
+        <link href="CSS/jquery.dataTables_themeroller.min.css" rel="stylesheet">
+        
+        
         <title>AppMediatheque</title>
     </head>
     <body>

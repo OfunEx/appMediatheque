@@ -13,41 +13,31 @@
 
 
 	<?php 
+            if(isset($_GET["q"])){
 
-		if(isset($_GET["q"])){
+                $query = strtolower($_GET["q"]);
 
-			$query = strtolower($_GET["q"]);
+                $res = Key::findKey($query);
 
-			$res = Key::findKey($query);
+                if(!is_null($res)){
 
-			if(!is_null($res)){
+                        Link::findSupportsByKey($res);
 
-				Link::findSupportsByKey($res);
+                }
+                else{
+                    echo "<p>Ce mot clé n'existe pas...</p>";
+                    $sugKeys = Key::findSuggestedKey($query);
+                    if ( strlen($query) >= 2 && count($sugKeys) > 0) {
+                        echo "<p>peut être voulez-vous dire : ";
 
-			}
-			else{
+                        foreach ($sugKeys as $key) {
+                                echo "<a href=\"http://localhost/appMediatheque/?q=".$key."\">".$key."</a><br/>";
+                        }
 
-				echo "<p>Ce mot clé n'existe pas...</p>";
-				$sugKeys = Key::findSuggestedKey($query);
-				if ( strlen($query) >= 2 && count($sugKeys) > 0) {
-					echo "<p>peut être voulez-vous dire : ";
-					
-					foreach ($sugKeys as $key) {
-						echo "<a href=\"http://localhost/appMediatheque/?q=".$key."\">".$key."</a><br/>";
-					}
-
-					echo "</p>";
-
-
-
-				}
-				
-			}
-
-		}
-
-
-
+                        echo "</p>";
+                    }
+                }
+            }
 	?>
 
 </div>

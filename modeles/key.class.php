@@ -85,7 +85,7 @@ class Key{
         echo '</ul>';
         echo '</div>';
     }
-    
+        
     public static function ajouterKey($unTerme,$unCom){
         $bdd = connect();
         $terme = $bdd->quote($unTerme);

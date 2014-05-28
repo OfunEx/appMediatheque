@@ -4,7 +4,7 @@
 <div id="zone_de_texte">
     <?php include("vues/menu/menu.php"); ?>
     <br>
-    <h1>Partie affichage support</h1>
+    <div class="titre_partie"><h1>Fiches des supports</h1></div>
     <div id="support-wrapper">
 	    <?php
 

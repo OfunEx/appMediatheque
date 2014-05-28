@@ -41,7 +41,7 @@ $(document).ready(function(){
     <?php include("vues/menu/menu.php"); ?>
     <?php include("vues/connexion.php"); ?>
     <br>
-    <h1>Partie affichage des mot clés</h1>
+    <div class="titre_partie"><h1>Mots clés</h1></div>
     <div id="tabs_index">
         <?php
         Key::createListKeys();

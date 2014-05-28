@@ -12,7 +12,7 @@ $(function() {
 <div id="zone_de_texte">
     <?php include("vues/menu/menu2.php"); ?>
     <br>
-    <h1>Gestion des supports</h1>
+    <div class="titre_partie"><h1>Gestion des supports</h1></div>
     <div id="tabs">
         <ul>
             <li><a href="#tabs-1">Consulter</a></li>

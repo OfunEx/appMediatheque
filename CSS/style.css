@@ -31,7 +31,6 @@ body
 .titre_partie{
     margin-top: 100px;
     margin-left: 50px;
-    
 }
 
 .index_block{
@@ -51,6 +50,14 @@ body
 #tabs_index{
     float: left;
     width: 740px;
+}
+
+#lier form div{
+    font-size: 14px;
+    
+    /*float: left;*/
+    /*margin-right: 20px;*/
+    /*margin-bottom: 20px;*/
 }
 
 .contenu_index{
