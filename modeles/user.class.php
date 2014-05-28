@@ -26,12 +26,26 @@ class User{
     public static function emailExist($unEmail){
         //vérifie si un email existe déjà dans la base de donnée
 
+        $sql = "SELECT `mail_user` FROM `user` WHERE `mail_user` = '".$unEmail."'";
+        $bdd = connect();
+        $requete = $bdd -> query($sql);
+
+        $value =  $requete -> fetch(PDO::FETCH_ASSOC);
+
+        return is_array($value);
 
     }
 
-    public static function idCExist(){
+    public static function idCExist($unID){
         //vérifie si un identifiant existe déjà dans la base de donnée
 
+        $sql = "SELECT `idconnex_user` FROM `user` WHERE `idconnex_user` = '".$unID."'";
+        $bdd = connect();
+        $requete = $bdd -> query($sql);
+
+        $value =  $requete -> fetch(PDO::FETCH_ASSOC);
+
+        return is_array($value);
 
 
     }
