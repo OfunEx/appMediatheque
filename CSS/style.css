@@ -1,0 +1,221 @@
+/*
+    Document   : style
+    Created on : 16 mai 2014, 17:58:39
+    Author     : Ofun
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root {
+    display: block;
+}
+
+body
+{
+    font: 14px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif;
+    color: #010101;
+    background-color: #8dadc8;
+}
+
+#zone_de_texte
+{
+	border: 1px solid rgb(205,205,205);
+	border-radius: 10px 10px 10px 10px;
+	background-color: #EEEFF4;
+	box-shadow: 0px 6px 10px #000000;
+        margin-right: auto;
+        margin-left: auto;
+        width: 90%;
+}
+
+.index_block{
+    /*position: relative;*/
+    display: inline-block;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px 10px 10px 10px;
+    border-color: #046380;
+    padding: 2px;
+    
+    /*float: left;*/
+}
+
+#tabs_index{
+    float: left;
+    width: 1000px;
+}
+
+.contenu_index{
+    font-size: 14px;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px 10px 10px 10px;
+    border-color: #046380;
+    display: inline-block;
+    float: left;
+    width: 200px;
+    height: 10%;
+    margin-left: 20px;
+    padding: 2px;
+}
+
+.fiche_support{
+    width: 700px;
+    border-style: solid;
+    border-color: #538FB6;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.form_ajouter{
+    height: 300px;
+}
+
+.form_ajouter div{
+    width: 300px;
+    height: 50px;
+    margin-left: 10px;
+    margin-top: 10px;
+    float: left;
+    display: inline-block;
+}
+
+.form_ajouter_key div{
+    display: inline-block;
+}
+
+textArea {
+    height: 46px;
+    width: 200px;
+    resize: none;
+}
+
+.titre_fiche{
+    font-weight : bold; /* on met le texte en gras */
+    font-family : "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+    font-size : 20px; /* hauteur du texte : 16 pixels */
+    text-decoration: underline;
+}
+
+.titre_index{
+    font-weight : bold; /* on met le texte en gras */
+    font-family : "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+    font-size : 25px; /* hauteur du texte : 16 pixels */
+    text-decoration: underline;
+}
+
+.connexFloat{
+    float: right;
+}
+
+#accordionConnex{
+    /*padding: 10px;*/
+    width: 350px;
+    height: 220px;
+}
+
+/*_____________________________| Elements du menu |_____________________________*/
+
+
+#menu, #menu ul /* Liste */
+{
+        padding : 0; /* pas de marge int�rieure */
+        margin : 0; /* ni ext�rieure */
+        list-style : none; /* on supprime le style par d�faut de la liste */
+        line-height : 28px; /* on d�finit une hauteur pour chaque �l�ment */
+        text-align : center; /* on centre le texte qui se trouve dans la liste */
+		box-shadow: 8px 8px 15px #5883ac;
+}
+
+#menu /* Ensemble du menu */
+{
+        font-weight : bold; /* on met le texte en gras */
+        font-family : "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+        font-size : 15px; /* hauteur du texte : 16 pixels */
+}
+
+#menu a /* Contenu des listes */
+{
+        display : inline-block; /* on change le type d'�l�ment, les liens deviennent des balises de type block */
+        padding : 0; /* aucune marge int�rieure */
+/*        background : #1484e6;  couleur de fond
+        color : #fff;  couleur du texte */
+        text-decoration : none; /* on supprime le style par d�faut des liens (la plupart du temps = soulign�) */
+        width : 228px; /* largeur */
+		height : 35px;
+		box-shadow: 0px 8px 20px #5883ac;
+                font-size:15px;
+                border-collapse:collapse;
+
+}
+
+#menu a:hover /* Lorsque la souris passe sur un des liens */
+{
+/*        color: #1484e6;
+        background: #fff;  ... et au contraire, le fond en blanc */
+		padding : 0;
+		box-shadow: 0px 0px 25px #234CA5;
+		cursor : #234CA5;
+}
+
+#menu li /* Elements des listes */
+{
+        float : left;
+        /* pour IE qui ne reconna�t pas "transparent" */
+        border-right : 1px solid #fff; /* on met une bordure blanche � droite de chaque �l�ment */
+
+}
+
+/* IE ne reconnaissant pas le s�lecteur ">" */
+html>body #menu li
+{
+        border-right: 0px solid transparent; /* on met une bordure transparente � droite de chaque �l�ment */
+}
+
+#menu li ul /* Sous-listes */
+{
+        position: absolute; /* Position absolue */
+        width: 159px; /* Largeur des sous-listes */
+        left: -999em; /* Hop, on envoie loin du champ de vision */
+}
+
+#menu li ul li /* �l�ments de sous-listes */
+{
+        /* pour IE qui ne reconna�t pas "transparent" (comme pr�c�demment) */
+        border-top : 1px solid #fff; /* on met une bordure blanche en haut de chaque �l�ment d'une sous liste */
+}
+
+/* IE ne reconnaissant pas le s�lecteur ">" */
+html>body #menu li ul li
+{
+        border-top : 1px solid transparent; /* on met une bordure transparente en haut de chaque �l�ment */
+}
+
+#menu li ul ul
+{
+        margin    : -29px 0 0 158px ; /* On d�cale les sous-sous-listes pour qu'elles ne soient pas au dessus des sous-listes */
+        /* pour IE qui ne reconna�t pas "transparent" (comme pr�c�demment) */
+        border-left     : 1px solid #fff ; /* Petite bordure � gauche pour ne pas coller ... */
+}
+
+/* IE ne reconnaissant pas le s�lecteur ">" */
+html>body #menu li ul ul
+{
+        border-left     : 1px solid transparent ; /* on met une bordure transparente sur la gauche de chaque �l�ment*/
+}
+
+#menu li:hover ul ul, #menu li.sfhover ul ul /* Sous-sous-listes lorsque la souris passe sur un �l�ment de liste */
+{
+        left: -999em; /* On exp�die les sous-sous-listes hors du champ de vision */
+}
+
+#menu li:hover ul, #menu li li:hover ul, #menu li.sfhover ul, #menu li li.sfhover ul  /* Sous-listes lorsque la souris passe sur un �l�ment de liste ET sous-sous-lites lorsque la souris passe sur un �l�ment de sous-liste */
+{
+        left: auto; /* Repositionnement normal */
+        min-height: 0; /* Corrige un bug sous IE */
+}
+
