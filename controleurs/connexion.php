@@ -22,7 +22,7 @@
         
         if($niveau['level_user'] == 1){
 
-            $requete_donnees = recup_donnees_user($_POST['login'],$pass_sha1);
+            $desDonnees = recup_donnees_user($_POST['login'],$pass_sha1);
             $idU = $desDonnees['id_user'];
             $prenom = $desDonnees['prenom_user'];
             $nom = $desDonnees['nom_user'];
