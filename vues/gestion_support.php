@@ -69,7 +69,7 @@
                         </tr>
                 </thead>
                 <tbody>
-                    <?php Support::listAlterSupModif()?>
+                    <?php Support::listAlterSupModif();?>
                 </tbody>
                 
             </table>
