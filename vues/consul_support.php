@@ -21,8 +21,6 @@
 
     	?>
 
-
-
         <div class="nav-page">
             <a title="Première page" href="index.php?page0=consul_support&page=1"><<</a>
             
@@ -31,13 +29,11 @@
                     
                     echo " " . 1 . " ";
                     
-                    
                     for ($i = 2; $i < 5; $i++) {
                         
                         echo '- <a title="Première page" href="index.php?page0=consul_support&page=' . $i . '">' . $i . '</a> ';
                         
                     }
-                    
                     
     		}
     		else{
@@ -60,13 +56,7 @@
                         echo '- <a title="Première page" href="index.php?page0=consul_support&page=' . $i . '">' . $i . '</a> ';
                         
                     }
-                    
-                    
     		}
-                
-                
-                
-                
             
             ?>
             

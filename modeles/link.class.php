@@ -28,10 +28,6 @@ class Link{
         $bdd = connect();
         $requete = $bdd -> query($sql);
         
-        if(!$requete){
-            echo 'Ce mot clé n\'est pas encore associer à un support.';
-        }
-
         while($value = $requete -> fetch(PDO::FETCH_ASSOC)){
             echo "<div class=\"fiche_support\">"
             . "<div class=\"titre_fiche\">".$value['titre_support']."</div>"
@@ -47,6 +43,15 @@ class Link{
 
     }
     
+    private static function checkDouble($idS,$idK){
+        $bdd = connect();
+        
+        $sql = "SELECT * FROM `link` WHERE id_support =\"".$idS."\" AND id_key =\"".$idK."\"";
+        $requete = $bdd -> query($sql);
+        $res = $requete->fetchAll();
+        return $res;
+    }
+
     //permet de lier un support a plusieurs mots cles
     public static function ajouterLink($idS,$keys){
         $bdd = connect();
@@ -58,9 +63,14 @@ class Link{
             
             $currentKey = $bdd->quote($keys[$compteur]);
             
-            $sql = "INSERT INTO `link`(`id_support`, `id_key`) VALUES ($idSupport,$currentKey)";
+            //verifie si il a des entree qui existe deja
+            $retour = Link::checkDouble($idSupport, $currentKey);
+            var_dump($retour);
+            if(!$retour){
+                $sql = "INSERT INTO `link`(`id_support`, `id_key`) VALUES ($idSupport,$currentKey)";
             
-            $requete = $bdd -> query($sql);
+                $requete = $bdd -> query($sql);
+            }
             
             $compteur++;
         }
