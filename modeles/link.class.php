@@ -66,7 +66,7 @@ class Link{
             //verifie si il a des entree qui existe deja
             $retour = Link::checkDouble($idSupport, $currentKey);
             var_dump($retour);
-            if(!$retour){
+            if($retour){
                 $sql = "INSERT INTO `link`(`id_support`, `id_key`) VALUES ($idSupport,$currentKey)";
             
                 $requete = $bdd -> query($sql);
