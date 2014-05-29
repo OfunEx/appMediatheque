@@ -58,7 +58,7 @@ class User{
         //ajoute un utilisateur
 
         
-        $sql = "INSERT INTO `media`.`user` (`id_user`, `prenom_user`, `nom_user`, `date_user`, 
+        $sql = "INSERT INTO `user` (`id_user`, `prenom_user`, `nom_user`, `date_user`, 
                                             `mail_user`, `idconnex_user`, `pass_user`, `level_user`) 
                 VALUES (NULL, '".$prenom."', '".$nom."', '".$date."', '".$mail."', '".$idC."', '".$pass."', '".$level."');";
         $bdd = connect();

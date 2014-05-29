@@ -162,6 +162,7 @@
 
         <form action="?page0=inscription" method="post" class="elegant-aero">
 		    <h1>Inscription Réussie !</h1>
+		    <span><a href="index.php">Retour à l'accueil</a></span>
 		</form>
 
 

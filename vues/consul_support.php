@@ -24,7 +24,7 @@
 
 
         <div class="nav-page">
-            <a title="Première page" href="http://localhost/appMediatheque/index.php?page0=consul_support&page=1"><<</a>
+            <a title="Première page" href="index.php?page0=consul_support&page=1"><<</a>
             
             <?php 
                 if(!isset($_GET["page"]) || $_GET["page"] < 1 || $_GET["page"] > $nbPage){
@@ -34,7 +34,7 @@
                     
                     for ($i = 2; $i < 5; $i++) {
                         
-                        echo '- <a title="Première page" href="http://localhost/appMediatheque/index.php?page0=consul_support&page=' . $i . '">' . $i . '</a> ';
+                        echo '- <a title="Première page" href="index.php?page0=consul_support&page=' . $i . '">' . $i . '</a> ';
                         
                     }
                     
@@ -47,7 +47,7 @@
 
                         if($i < 1 ) continue;
                         
-                        echo ' <a title="Première page" href="http://localhost/appMediatheque/index.php?page0=consul_support&page=' . $i . '">' . $i . '</a> -';
+                        echo ' <a title="Première page" href="index.php?page0=consul_support&page=' . $i . '">' . $i . '</a> -';
                         
                     }
                     
@@ -57,7 +57,7 @@
                     
                     for ($i = $_GET["page"] + 1; $i < $_GET["page"] + 4 && $i <= $nbPage; $i++) {
                         
-                        echo '- <a title="Première page" href="http://localhost/appMediatheque/index.php?page0=consul_support&page=' . $i . '">' . $i . '</a> ';
+                        echo '- <a title="Première page" href="index.php?page0=consul_support&page=' . $i . '">' . $i . '</a> ';
                         
                     }
                     
@@ -70,7 +70,7 @@
             
             ?>
             
-            <a title="Dernière page" href="http://localhost/appMediatheque/index.php?page0=consul_support&page=<?php echo $nbPage?>">>></a>
+            <a title="Dernière page" href="index.php?page0=consul_support&page=<?php echo $nbPage?>">>></a>
             
 
             <form  method="get" action="#" >

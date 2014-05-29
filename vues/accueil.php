@@ -31,7 +31,7 @@
                         echo "<p>peut être voulez-vous dire : ";
 
                         foreach ($sugKeys as $key) {
-                                echo "<a href=\"http://localhost/appMediatheque/?q=".$key."\">".$key."</a><br/>";
+                                echo "<a href=\"index.php?q=".$key."\">".$key."</a><br/>";
                         }
 
                         echo "</p>";
