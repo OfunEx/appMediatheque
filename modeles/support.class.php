@@ -85,6 +85,21 @@ class Support{
 
         $bdd = connect();
 
+        
+        $unTitre = $bdd->quote($unTitre);
+        $unTypeSup = $bdd->quote($unTypeSup);
+        $unTypeFormat = $bdd->quote($unTypeFormat);
+        $unTypeContenu = $bdd->quote($unTypeContenu);
+        $uneDate = $bdd->quote($uneDate);
+        $unCreateur = $bdd->quote($unCreateur);
+        $unTypeCreat = $bdd->quote($unTypeCreat);
+        $uneDescription = $bdd->quote($uneDescription);
+        $unNbExamp = $bdd->quote($unNbExamp);
+        $unNbExampDispo = $bdd->quote($unNbExampDispo);
+        $unNbConsul = $bdd->quote($unNbConsul);
+        $unTpsEmpMax = $bdd->quote($unTpsEmpMax);
+        $unId = $bdd->quote($unId);
+
 
 
         
