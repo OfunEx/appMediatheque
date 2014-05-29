@@ -84,10 +84,9 @@ class Support{
     {
 
         $bdd = connect();
-        
-        $id = $bdd->quote($unId);
-        $terme = $bdd->quote($unTerme);
-        $com = $bdd->quote($unCom);
+
+
+
         
         $sql = "UPDATE `support` SET
                     `titre_support` = '".$unTitre."',
@@ -123,6 +122,27 @@ class Support{
 
         $requete = $bdd->query($sql);
 
+        
+    }
+
+
+        public static function supprimerSupports($supports){
+        $bdd = connect();
+        $compteur = 0;
+        
+        while ($compteur < count($supports)) {
+            
+            $currentKey = $bdd->quote($supports[$compteur]);
+            
+            $sql1 = "DELETE FROM `link` WHERE `id_support` = ".$currentKey.";";
+            
+            $sql2 = "DELETE FROM `support` WHERE `id_support` = ".$currentKey.";";
+            
+            $requete1 = $bdd -> query($sql1);
+            $requete2 = $bdd -> query($sql2);
+            
+            $compteur++;
+        }
         
     }
 
@@ -200,6 +220,69 @@ class Support{
         
     }
 
+    public static function listAlterSupSupp(){
+        
+        $sql = "SELECT * FROM `support` ORDER BY 'titre_support' ASC";
+        $bdd = connect();
+        $desSup = $bdd -> query($sql);
+        
+        foreach ($desSup  as $result){
+            echo "<tr>
+
+                    <td style=\"text-align:center;\">
+                        <input type=\"checkbox\" name=\"supports[]\" value=\"".$result['id_support']."\">".$result['titre_support']."
+                    </td>
+                    
+                    <td style=\"text-align:center;\">
+                        <p>".$result['type_support']."</p>
+                    </td>
+
+                    <td>
+                        <p>".$result['type_format']."</p>
+                    </td>
+
+                    <td>
+                        <p>".$result['type_contenu']."</p>
+                    </td>
+
+                    <td>
+                        <p>".$result['date_publication']."</p>
+                    </td>
+
+                    <td>
+                        <p>".$result['description_support']."</p>
+                    </td>
+
+                    <td>
+                        <p>".$result['createur_support']."</p>
+                    </td>
+
+                    <td>
+                        <p>".$result['type_createur']."</p>
+                    </td>
+
+
+                    <td>
+                        <p>".$result['nbExemplaire']."</p>
+                    </td>
+
+                    <td>
+                        <p>".$result['nbExemplaireDispo']."</p>
+                    </td>
+
+                    <td>
+                        <p>".$result['nb_consultation']."</p>
+                    </td>
+
+                    <td>
+                        <p>".$result['tps_emprunt_max']."</p>
+                    </td>
+
+                </tr>";
+        }
+        
+    }
+
     public static function recup_support_id($id){
         $sql = "SELECT * FROM `support` WHERE `id_support` =".$id.";";
         $bdd = connect();
@@ -207,26 +290,29 @@ class Support{
         $value = $uneKey -> fetch(PDO::FETCH_ASSOC);
 
 
-        echo "<input type=\"hidden\" name=\"id_support\" value=\"" . $value["id_support"] . "><br>" ;
-        echo "<input type=\"text\" name=\"titre_support\" value=\"" .  $value["titre_support"] . "><br>" ;
-        echo "<input type=\"text\" name=\"type_support\" value=\"" .  $value["type_support"] . "><br>" ;
-        echo "<input type=\"text\" name=\"type_format\" value=\"" .  $value["type_format"] . "><br>";
-        echo "<input type=\"text\" name=\"type_contenu\" value=\"" .  $value["type_contenu"] ."><br>";
-        echo "<input type=\"text\" id=\"dateP\" name=\"date_publication\" value=\"" .  $value["date_publication"] . "><br>";
-        echo "<input type=\"text\" name=\"createur_support\" value=\"" .  $value["createur_support"] . "><br>";
-        echo "<input type=\"text\" name=\"type_createur\" value=\"" .  $value["type_createur"] . "><br>" ;
-        echo "<input type=\"text\" name=\"description_support\" value=\"" .  $value["description_support"] . "><br>";
-        echo "<input type=\"text\" name=\"nbExemplaire\" value=\"" .  $value["nbExemplaire"] . "><br>";
-        echo "<input type=\"text\" name=\"nbExemplaireDispo\" value=\"" .  $value["nbExemplaireDispo"] . "><br>";
-        echo "<input type=\"text\" name=\"nb_consultation\" value=\"" .  $value["nb_consultation"] . "><br>";
-        echo "<input type=\"text\" name=\"tps_emprunt_max\" value=\"" .  $value["tps_emprunt_max"] ."><br>";
+        echo "<input type=\"hidden\" name=\"id_support\" value=\"" . $value["id_support"] . "\"><br>" ;
+        echo "Titre : <input required type=\"text\" name=\"titre_support\" value=\"" .  $value["titre_support"] . "\"><br>" ;
+        echo "Type support :  <input type=\"text\" name=\"type_support\" value=\"" .  $value["type_support"] . "\"><br>" ;
+        echo "Type format : <input type=\"text\" name=\"type_format\" value=\"" .  $value["type_format"] . "\"><br>";
+        echo "Type contenu : <input type=\"text\" name=\"type_contenu\" value=\"" .  $value["type_contenu"] ."\"><br>";
+        echo "Date de publication : <input required type=\"text\" id=\"dateP\" name=\"date_publication\" value=\"" .  $value["date_publication"] . "\"><br>";
+        echo "Description : <input type=\"text\" name=\"createur_support\" value=\"" .  $value["createur_support"] . "\"><br>";
+        echo "Créateur : <input type=\"text\" name=\"type_createur\" value=\"" .  $value["type_createur"] . "\"><br>" ;
+        echo "Type créateur : <input type=\"text\" name=\"description_support\" value=\"" .  $value["description_support"] . "\"><br>";
+        echo "Nombre examplaire : <input type=\"text\" name=\"nbExemplaire\" value=\"" .  $value["nbExemplaire"] . "\"><br>";
+        echo "Examplaire disponible : <input type=\"text\" name=\"nbExemplaireDispo\" value=\"" .  $value["nbExemplaireDispo"] . "\"><br>";
+        echo "Nombre consultation : <input type=\"text\" name=\"nb_consultation\" value=\"" .  $value["nb_consultation"] . "\"><br>";
+        echo "Temps d'emprunt maximum : <input type=\"text\" name=\"tps_emprunt_max\" value=\"" .  $value["tps_emprunt_max"] ."\"><br>";
 
 
-        echo "<input id='submitModifier' type=\"submit\" name=\"ModifierSupport \" value=\"Valider\" style=\"margin-bottom: 30px;margin-left: 20px;\"/>";
+        echo "<input id='submitModifier' type=\"submit\" name=\"ModifierSupport\" value=\"Valider\" style=\"margin-bottom: 30px;margin-left: 20px;\"/>";
 
-        var_dump($value);
+
 
     }
+
+
+
     
     
 }

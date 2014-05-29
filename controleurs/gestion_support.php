@@ -26,11 +26,16 @@ if(!empty($_POST['AjouterSupport'])){
 
 if(!empty($_POST['ModifierSupport'])){
 
-    Support::ModifierSupport($_POST["id_support"],$_POST["titre_support"],$_POST["type_support"],$_POST["type_format"],$_POST["type_contenu"],$_POST["date_publication"],
+    Support::modifierSupport($_POST["id_support"],$_POST["titre_support"],$_POST["type_support"],$_POST["type_format"],$_POST["type_contenu"],$_POST["date_publication"],
                                             $_POST["createur_support"],$_POST["type_createur"],$_POST["description_support"],$_POST["nbExemplaire"],
                                             $_POST["nbExemplaireDispo"],$_POST["nb_consultation"],
                                             $_POST["tps_emprunt_max"]);
 
+}
+
+
+if(!empty($_POST['SupprimerSupports'])){
+    Support::supprimerSupports($_POST['supports']);
 }
 
 

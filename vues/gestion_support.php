@@ -80,8 +80,30 @@
         </div>
         <div id="tabs-4">
             <p>Supprimer</p>
-            <form method="POST" action="">
-
+            <form method="POST" action="index.php?page2=gestion_support">
+                <p>Pour supprimer la sélection : <input id='submitSupprimer' type="submit" name="SupprimerSupports" value="Cliquez ici" style="margin-bottom: 30px;margin-left: 20px;"/></p>
+                <table class="tab_support">
+                    <thead>
+                            <tr>
+                                <th> Titre</th>
+                                <th> Type support</th>
+                                <th> Type format</th>
+                                <th> Type contenu</th>
+                                <th> Date de publication</th>
+                                <th> Description</th>
+                                <th> Créateur</th>
+                                <th> Type créateur</th>
+                                <th> Nombre examplaire</th>
+                                <th> Examplaire disponible</th>
+                                <th> Nombre consultation</th>
+                                <th> Temps d'emprunt maximum</th>
+                            </tr>
+                    </thead>
+                    <tbody>
+                        <?php Support::listAlterSupSupp() ?>
+                    </tbody>
+                    
+                </table>
             </form>
         </div>
     </div>
