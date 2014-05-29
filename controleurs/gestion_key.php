@@ -8,6 +8,21 @@ include('modeles/dbconnexion.php');
 
 //On inclut le modele
 require_once('modeles/key.class.php');
+require_once 'modeles/user.class.php';
+
+if(empty($_SESSION['user'])){
+    
+    
+    header('Location: index.php');
+}
+elseif(!empty($_SESSION['user'])){
+    $uti = $_SESSION['user'];
+    $user = unserialize($uti);
+    
+    if($user->getLevel() !=2){
+        header('Location: index.php');
+    }
+}
 
 if(!empty($_POST['AjouterKey'])){
     Key::ajouterKey($_POST['terme'], $_POST['com']);

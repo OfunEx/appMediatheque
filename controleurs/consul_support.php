@@ -10,6 +10,12 @@ include('modeles/dbconnexion.php');
 require_once('modeles/support.class.php');
 
 //On inclut la vue
-include('vues/consul_support.php');
+if(!empty($_GET['redirecConsulSupport'])){
+    include('vues/consul_support_search.php');
+}
+else{
+    include('vues/consul_support.php');
+}
+
 
 ?>
