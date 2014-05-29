@@ -116,7 +116,23 @@ class Key{
         
     }
     
-    public static function supprimerKey(){
+    public static function supprimerKey($keys){
+        $bdd = connect();
+        $compteur = 0;
+        
+        while ($compteur < count($keys)) {
+            
+            $currentKey = $bdd->quote($keys[$compteur]);
+            
+            $sql1 = "DELETE FROM `link` WHERE `id_key` = ".$currentKey.";";
+            
+            $sql2 = "DELETE FROM `key` WHERE `id_key` = ".$currentKey.";";
+            
+            $requete1 = $bdd -> query($sql1);
+            $requete2 = $bdd -> query($sql2);
+            
+            $compteur++;
+        }
         
     }
     
@@ -165,7 +181,7 @@ class Key{
         foreach ($desKeys as $result){
             echo "<tr>
                     <td style=\"text-align:center;\">
-                    <input type=\"checkbox\" name=\"keys\" value=\"".$result['id_key']."\">".$result['terme']."
+                    <input type=\"checkbox\" name=\"keys[]\" value=\"".$result['id_key']."\">".$result['terme']."
                     </td>
                     
                     <td>

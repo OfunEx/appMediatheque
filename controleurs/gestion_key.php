@@ -18,7 +18,7 @@ if(!empty($_POST['ModifierKey'])){
 }
 
 if(!empty($_POST['SupprimerKey'])){
-    Key::supprimerKey($id);
+    Key::supprimerKey($_POST['keys']);
 }
 
 //On inclut la vue

@@ -69,8 +69,8 @@ $(function() {
         <div id="tabs-4">
             <p>Supprimer</p>
             
-            <form method="POST" action="">
-                <p>Pour supprimer la sélection : <input id='submitSupprimer' type="submit" name="ModifierKey" value="Cliquez ici" style="margin-bottom: 30px;margin-left: 20px;"/></p>
+            <form method="POST" action="index.php?page2=gestion_key">
+                <p>Pour supprimer la sélection : <input id='submitSupprimer' type="submit" name="SupprimerKey" value="Cliquez ici" style="margin-bottom: 30px;margin-left: 20px;"/></p>
                 <table class="tab_keys">
                     <thead>
                             <tr>
