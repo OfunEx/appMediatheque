@@ -63,7 +63,10 @@ $(function() {
                             <th> Commentaires</th>
                         </tr>
                 </thead>
-                <?php Key::listAlterKeysModif() ?>
+                <tbody>
+                    <?php Key::listAlterKeysModif() ?>
+                </tbody>
+                
             </table>
         </div>
         <div id="tabs-4">

@@ -2,6 +2,16 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/wamp/www/appMediatheque/controleurs/gestion_key.php</file>
+            <file>file:/D:/wamp/www/appMediatheque/controleurs/gestion_support.php</file>
+            <file>file:/D:/wamp/www/appMediatheque/modeles/support.class.php</file>
+            <file>file:/D:/wamp/www/appMediatheque/vues/consul_support.php</file>
+            <file>file:/D:/wamp/www/appMediatheque/modeles/key.class.php</file>
+            <file>file:/D:/wamp/www/appMediatheque/vues/gestion_support.php</file>
+            <file>file:/D:/wamp/www/appMediatheque/vues/key_modif.php</file>
+            <file>file:/D:/wamp/www/appMediatheque/controleurs/consul_support.php</file>
+            <file>file:/D:/wamp/www/appMediatheque/vues/gestion_key.php</file>
+        </group>
     </open-files>
 </project-private>

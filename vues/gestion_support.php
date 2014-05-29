@@ -1,20 +1,3 @@
-<script>
-$(function() {
-    $("#accordionAjout").accordion({
-        heightStyle: "content"
-    });
-    
-    $("#tabs").tabs();
-    $("#dateP").datepicker({
-        changeMonth : true,
-        changeYear : true
-    }).
-    datepicker("option","showAnim","slideDown").
-    datepicker("option","dateFormat","yy-mm-dd");
-
-    $("#submitAjouter").button();
-});
-</script>
 <div id="zone_de_texte">
     <?php include("vues/menu/menu2.php"); ?>
     <br>
@@ -69,9 +52,31 @@ $(function() {
         </div>
         <div id="tabs-3">
             <p>Modifier</p>
-            <form method="POST" action="">
-
-            </form>
+            
+            <table class="tab_support">
+                <thead>
+                        <tr>
+                            <th> Titre</th>
+                            <th> Type support</th>
+                            <th> Type format</th>
+                            <th> Type contenu</th>
+                            <th> Date de publication</th>
+                            <th> Description</th>
+                            <th> Créateur</th>
+                            <th> Type créateur</th>
+                            <th> Nombre examplaire</th>
+                            <th> Examplaire disponible</th>
+                            <th> Nombre consultation</th>
+                            <th> Temps d'emprunt maximum</th>
+                        </tr>
+                </thead>
+                <tbody>
+                    <?php Support::listAlterSupModif()?>
+                </tbody>
+                
+            </table>
+            
+            
         </div>
         <div id="tabs-4">
             <p>Supprimer</p>
@@ -82,3 +87,28 @@ $(function() {
     </div>
 </div>
 
+<script>
+$(function() {
+    $("#accordionAjout").accordion({
+        heightStyle: "content"
+    });
+    
+    $("#tabs").tabs();
+    $("#dateP").datepicker({
+        changeMonth : true,
+        changeYear : true
+    }).
+    datepicker("option","showAnim","slideDown").
+    datepicker("option","dateFormat","yy-mm-dd");
+
+    $("#submitAjouter").button();
+    
+    $('.tab_support').dataTable({
+        "bJQueryUI": true,
+        'iDisplayLength': 5,
+        bAutoWidth: true
+    });
+
+
+});
+</script>

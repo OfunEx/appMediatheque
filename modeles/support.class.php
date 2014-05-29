@@ -138,6 +138,96 @@ class Support{
         
     }
 
+    public static function listAlterSupModif(){
+        
+        $sql = "SELECT * FROM `support` ORDER BY 'titre_support' ASC";
+        $bdd = connect();
+        $desSup = $bdd -> query($sql);
+        
+        foreach ($desSup  as $result){
+            echo "<tr>
+                    <td style=\"text-align:center;\">
+                        <a href=\"index.php?page2=gestion_support&redirecModif=ok&id=".$result['id_support']."\">".$result['titre_support']."</a>
+                    </td>
+                    
+                    <td style=\"text-align:center;\">
+                        <p>".$result['type_support']."</p>
+                    </td>
+
+                    <td>
+                        <p>".$result['type_format']."</p>
+                    </td>
+
+                    <td>
+                        <p>".$result['type_contenu']."</p>
+                    </td>
+
+                    <td>
+                        <p>".$result['date_publication']."</p>
+                    </td>
+
+                    <td>
+                        <p>".$result['description_support']."</p>
+                    </td>
+
+                    <td>
+                        <p>".$result['createur_support']."</p>
+                    </td>
+
+                    <td>
+                        <p>".$result['type_createur']."</p>
+                    </td>
+
+
+                    <td>
+                        <p>".$result['nbExemplaire']."</p>
+                    </td>
+
+                    <td>
+                        <p>".$result['nbExemplaireDispo']."</p>
+                    </td>
+
+                    <td>
+                        <p>".$result['nb_consultation']."</p>
+                    </td>
+
+                    <td>
+                        <p>".$result['tps_emprunt_max']."</p>
+                    </td>
+
+                </tr>";
+        }
+        
+    }
+
+    public static function recup_support_id($id){
+        $sql = "SELECT * FROM `support` WHERE `id_support` =".$id.";";
+        $bdd = connect();
+        $uneKey = $bdd -> query($sql);
+        $value = $uneKey -> fetch(PDO::FETCH_ASSOC);
+
+
+        echo "<input type=\"hidden\" name=\"id_support\" value=\"" . $value["id_support"] . "><br>" ;
+        echo "<input type=\"text\" name=\"titre_support\" value=\"" .  $value["titre_support"] . "><br>" ;
+        echo "<input type=\"text\" name=\"type_support\" value=\"" .  $value["type_support"] . "><br>" ;
+        echo "<input type=\"text\" name=\"type_format\" value=\"" .  $value["type_format"] . "><br>";
+        echo "<input type=\"text\" name=\"type_contenu\" value=\"" .  $value["type_contenu"] ."><br>";
+        echo "<input type=\"text\" id=\"dateP\" name=\"date_publication\" value=\"" .  $value["date_publication"] . "><br>";
+        echo "<input type=\"text\" name=\"createur_support\" value=\"" .  $value["createur_support"] . "><br>";
+        echo "<input type=\"text\" name=\"type_createur\" value=\"" .  $value["type_createur"] . "><br>" ;
+        echo "<input type=\"text\" name=\"description_support\" value=\"" .  $value["description_support"] . "><br>";
+        echo "<input type=\"text\" name=\"nbExemplaire\" value=\"" .  $value["nbExemplaire"] . "><br>";
+        echo "<input type=\"text\" name=\"nbExemplaireDispo\" value=\"" .  $value["nbExemplaireDispo"] . "><br>";
+        echo "<input type=\"text\" name=\"nb_consultation\" value=\"" .  $value["nb_consultation"] . "><br>";
+        echo "<input type=\"text\" name=\"tps_emprunt_max\" value=\"" .  $value["tps_emprunt_max"] ."><br>";
+
+
+        echo "<input id='submitModifier' type=\"submit\" name=\"ModifierSupport \" value=\"Valider\" style=\"margin-bottom: 30px;margin-left: 20px;\"/>";
+
+        var_dump($value);
+
+    }
+    
     
 }
 

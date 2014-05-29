@@ -24,7 +24,23 @@ if(!empty($_POST['AjouterSupport'])){
     Support::ajouterSupport($titreS, $typeS, $typeF, $typeC, $dateP, $auteurS, $typeA, $descri, $nbEx, $tps);
 }
 
+if(!empty($_POST['ModifierSupport'])){
+
+    Support::ModifierSupport($_POST["id_support"],$_POST["titre_support"],$_POST["type_support"],$_POST["type_format"],$_POST["type_contenu"],$_POST["date_publication"],
+                                            $_POST["createur_support"],$_POST["type_createur"],$_POST["description_support"],$_POST["nbExemplaire"],
+                                            $_POST["nbExemplaireDispo"],$_POST["nb_consultation"],
+                                            $_POST["tps_emprunt_max"]);
+
+}
+
+
+
 //On inclut la vue
-include('vues/gestion_support.php');
+if(!empty($_GET['redirecModif']) && !empty($_GET['id'])){
+    include('vues/support_modif.php');
+}
+else{
+    include('vues/gestion_support.php');
+}
 
 ?>
