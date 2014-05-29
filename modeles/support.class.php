@@ -326,8 +326,6 @@ class Support{
         echo "<input id='submitModifier' type=\"submit\" name=\"ModifierSupport\" value=\"Valider\" style=\"margin-bottom: 30px;margin-left: 20px;\"/>";
 
     }
-    
-    
 
 }
 
