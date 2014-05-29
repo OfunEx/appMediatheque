@@ -7,6 +7,7 @@
 include('modeles/dbconnexion.php');
 
 //On inclut le modele
+require_once('modeles/support.class.php');
 require_once('modeles/link.class.php');
 require_once 'modeles/user.class.php';
 
@@ -31,10 +32,19 @@ if(!empty($_POST['submitLink'])){
 if(!empty($_POST['submitUnlink'])){
     Link::ajouterLink($_POST['support'], $_POST['keys']);
 }
+if(!empty($_POST["submitSupp"])){
+
+    Link::supprimerLink($_POST["idKey"], $_POST["keys"]);
+
+}
+
 
 //On inclut la vue
 if($_GET['partie']==1){
     include('vues/link_key.php');
+}
+elseif ($_GET['partie']==2 && !empty($_GET["redirectModif"]) && !empty($_GET["id"])) {
+    include("vues/link2_supp.php");
 }
 elseif($_GET['partie']==2){
     include('vues/link2_key.php');

@@ -39,6 +39,26 @@ class Support{
             . "<p>Description :<br>".$value['description_support']."</p></div>";
         }
     }
+
+    //liste un support present dans la bdd
+    public static function listASupport($id){
+        $sql = "SELECT * FROM support WHERE id_support =".$id;
+        $bdd = connect();
+        $requete = $bdd -> query($sql);
+
+        while($value = $requete -> fetch(PDO::FETCH_ASSOC)){
+            echo "<div class=\"fiche_support\">"
+            . "<div class=\"titre_fiche\">".$value['titre_support']."</div>"
+            . "<p>Type du support : ".$value['type_support']." ; "
+            . "Format : ".$value['type_format']." ; "
+            . "Contenu : ".$value['type_contenu']." / "
+            . "Date de publication : ".$value['date_publication']."<br>"
+            . "".$value['type_createur']." : ".$value['createur_support']."<br>"
+            . "Nombre d'exemplaire disponible : ".$value['nbExemplaireDispo'].", "
+            . "Temps d'emprunt maximum : ".$value['tps_emprunt_max']."</p>"
+            . "<p>Description :<br>".$value['description_support']."</p></div>";
+        }
+    }
     
     //retourne toutes les clés lier a un support
     public static function getKeysSupport($idS){
@@ -326,6 +346,8 @@ class Support{
         echo "<input id='submitModifier' type=\"submit\" name=\"ModifierSupport\" value=\"Valider\" style=\"margin-bottom: 30px;margin-left: 20px;\"/>";
 
     }
+
+
 
 }
 
