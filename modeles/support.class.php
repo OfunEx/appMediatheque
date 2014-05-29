@@ -77,11 +77,52 @@ class Support{
         }
     }
     
-    public static function modifierSupport(){
+    public static function modifierSupport($unId,$unTitre,$unTypeSup,$unTypeFormat,$unTypeContenu,$uneDate,
+                                            $unCreateur,$unTypeCreat,$uneDescription,$unNbExamp,
+                                            $unNbExampDispo,$unNbConsul,
+                                            $unTpsEmpMax)
+    {
+
+        $bdd = connect();
         
+        $id = $bdd->quote($unId);
+        $terme = $bdd->quote($unTerme);
+        $com = $bdd->quote($unCom);
+        
+        $sql = "UPDATE `support` SET
+                    `titre_support` = '".$unTitre."',
+                     `type_support` = '".$unTypeSup."',
+                     `type_format` = '".$unTypeFormat."',
+                     `type_contenu` = '".$unTypeContenu."',
+                     `date_publication` = '".$uneDate."',
+                     `createur_support` = '".$unCreateur."',
+                     `type_createur` = '".$unTypeCreat."',
+                     `description_support` = '".$uneDescription."',
+                     `nbExemplaire` = '".$unNbExamp."',
+                     `nbExemplaireDispo` = '".$unNbExampDispo."',
+                     `nb_consultation` = '".$unNbConsul."',
+                     `tps_emprunt_max` = '".$unTpsEmpMax."' WHERE `id_support` = ".$unId.";";
+        
+        $requete = $bdd -> query($sql);
+
     }
     
-    public static function supprimerSupport(){
+    public static function supprimerSupport($unIdSup){
+
+        $bdd = connect();
+        
+        $id = $bdd->quote($unId);
+        $terme = $bdd->quote($unTerme);
+        $com = $bdd->quote($unCom);
+
+        $sql = "DELETE FROM `link` WHERE `id_support` = " . $unIdSup;
+
+        $requete = $bdd->query($sql);
+
+        $sql = "DELETE FROM `support` WHERE `id_support` = " . $unIdSup;
+
+        $requete = $bdd->query($sql);
+
         
     }
 
