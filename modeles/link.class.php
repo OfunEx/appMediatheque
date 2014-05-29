@@ -15,6 +15,7 @@ class Link{
 
     }
     
+    //recherche le support associer a la key en parametre
     public static function findSupportsByKey($key){
         //cherche tout les supports possédant le mot clé entré en paramètre
         $sql = "SELECT s.id_support , titre_support, type_support, type_format,type_contenu, date_publication, createur_support, type_createur, 
@@ -26,6 +27,10 @@ class Link{
 
         $bdd = connect();
         $requete = $bdd -> query($sql);
+        
+        if(!$requete){
+            echo 'Ce mot clé n\'est pas encore associer à un support.';
+        }
 
         while($value = $requete -> fetch(PDO::FETCH_ASSOC)){
             echo "<div class=\"fiche_support\">"
@@ -42,6 +47,26 @@ class Link{
 
     }
     
+    //permet de lier un support a plusieurs mots cles
+    public static function ajouterLink($idS,$keys){
+        $bdd = connect();
+        
+        $idSupport = $bdd->quote($idS);
+        
+        $compteur = 0;
+        while ($compteur < count($keys)) {
+            
+            $currentKey = $bdd->quote($keys[$compteur]);
+            
+            $sql = "INSERT INTO `link`(`id_support`, `id_key`) VALUES ($idSupport,$currentKey)";
+            
+            $requete = $bdd -> query($sql);
+            
+            $compteur++;
+        }
+    }
+    
+    //liste et formate l affichage des supports pour la partie link
     public static function listLinkSupports(){
         $sql = "SELECT * FROM `support` ORDER BY titre_support ASC";
         $bdd = connect();
@@ -67,7 +92,8 @@ class Link{
                 </tr>";
         }
     }
-
+    
+    //liste et formate l affichage des keys pour la partie link
     public static function listLinkKeys(){
         $sql = "SELECT * FROM `key` ORDER BY terme ASC";
         $bdd = connect();
@@ -77,11 +103,11 @@ class Link{
             echo "<tr>
 
                 <td>
-                    <input type=\"checkbox\" name=\"".$result['id_key']."\" value=\"".$result['id_key']."\">".$result['terme']."
+                    <input type=\"checkbox\" name=\"keys[]\" value=\"".$result['id_key']."\">".$result['terme']."
                 </td>
 
                 <td>
-                    <p style=\"width:400px;height:70px;overflow:scroll;\">".$result['commentaire']."</p>
+                    <p style=\"width:300px;height:70px;overflow:scroll;\">".$result['commentaire']."</p>
                 </td>
 
                 </tr>";

@@ -11,7 +11,8 @@ class Key{
         $this->terme = $termeK;
         $this->commentaire = $comK;
     }
-
+    
+    //permet de lister toutes les key de la bdd de facon a representer un index ordonner par ordre alphabetique
     public static function listAllKeys(){
         $sql = "SELECT * FROM `key` ORDER BY terme ASC";
         $bdd = connect();
@@ -20,35 +21,41 @@ class Key{
         $compteur = 0;
         $save = null;
         while($value = $requete -> fetch(PDO::FETCH_ASSOC)){
-
+            //cette partie sert a formater un index ordonner par ordre alphabetique
+            //on recupere la premiere valeur
             $index = substr($value['terme'], 0,1);
 
             if(isset($save)){
 
                 switch ($index) {
                 case $index == $save:
-
+                    //si la premiere lettre est egale a la precedante on break
                     break;
                 default:
+                    //sinn on crée une nouvelles liste
                     echo "</div><div class=\"index_block\" id=\"tabs-".$compteur."\"><div class=\"titre_index\">".$index."</div>";
                     break;
                 }
             }
             else{
+                //cette partie gere le premier cas que la boucle va traitrer
+                //on crée une nouvelles liste
                 echo "<div class=\"index_block\" id=\"tabs-".$compteur."\"><div class=\"titre_index\">".$index."</div>";
             }
-
+            //on sauvegarde la premiere lettre pour la comparer a chaque boucle
             $save = $index;
 
             echo "<div class=\"contenu_index\">"
             . "<a style=\"font-size:10px;\" class=\"btn_key\" value=\"".$compteur."\">fermer</a>&nbsp&nbsp"
-            . "<a class=\"terme\" title=\"Commentaire : ".$value['commentaire']."\">".$value['terme']."</a>"
+            . "<a href=\"index.php?page0=consul_key&redirecConsulKey=ok&terme=".$value['terme']."\" class=\"terme\">".$value['terme']."</a>"
             . "<div class=\"com\" id=\"com".$compteur."\">Commentaire :<br>".$value['commentaire']."</div></div>";
 
             $compteur++;
         }
     }
-
+    
+    //cette partie est utilise pour formater le html pour utiliser la fonction tabs du plug in jquery ui
+    //tabs() necessite d avoir une liste contenant des ancres pour fonctionner
     public static function createListKeys(){
 
         $sql = "SELECT * FROM `key` ORDER BY terme ASC";
@@ -60,24 +67,29 @@ class Key{
         echo '<div>';
         echo '<ul>';
         while($value = $requete -> fetch(PDO::FETCH_ASSOC)){
-
+            //cette partie sert a formater un index ordonner par ordre alphabetique
+            //on recupere la premiere valeur
             $index = substr($value['terme'], 0,1);
-
+            
+            
             if(isset($save)){
 
                 switch ($index) {
                 case $index == $save:
-
+                    //si la premiere lettre est egale a la precedante on break
                     break;
                 default:
+                    //sinn on crée une nouvelles liste
                     echo "<li><a href=\"#tabs-".$compteur."\">".$index."</a></li>";
                     break;
                 }
             }
             else{
+                //cette partie gere le premier cas que la boucle va traitrer
+                //on crée une nouvelles liste
                 echo "<li><a href=\"#tabs-".$compteur."\">".$index."</a></li>";
             }
-
+            //on sauvegarde la premiere lettre pour la comparer a chaque boucle
             $save = $index;
 
             $compteur++;
@@ -85,11 +97,13 @@ class Key{
         echo '</ul>';
         echo '</div>';
     }
-        
+    
+    //permet d ajouter une key dans la base de donner        
     public static function ajouterKey($unTerme,$unCom){
         $bdd = connect();
         
-        $terme = $bdd->quote($unTerme);
+        //ucfirst met la premiere du terme en maj si elle ne l est pas deja
+        $terme = $bdd->quote(ucfirst($unTerme));
         $com = $bdd->quote($unCom);
         
         $requete = $bdd->exec("INSERT INTO `key`(`id_key`, `terme`, `commentaire`) "
@@ -103,9 +117,11 @@ class Key{
         }
     }
     
+    //permet de modifier une les valeurs d une key
     public static function modifierKey($unId,$unTerme,$unCom){
         $bdd = connect();
         
+        //on formalise les valeurs pour la bdd
         $id = $bdd->quote($unId);
         $terme = $bdd->quote($unTerme);
         $com = $bdd->quote($unCom);
@@ -116,10 +132,13 @@ class Key{
         
     }
     
+    //permet de supprimer une key ou un ensemble de keys choisi par l utilisateur
     public static function supprimerKey($keys){
         $bdd = connect();
         $compteur = 0;
         
+        //on va recupere chaque key du tableau keys[] et faire les traitements de suppression
+        //dans la table link puis dans la table key
         while ($compteur < count($keys)) {
             
             $currentKey = $bdd->quote($keys[$compteur]);
@@ -136,12 +155,14 @@ class Key{
         
     }
     
+    //recupere les donnees d une key par rapport a son id
     public static function recup_key_id($id){
         $sql = "SELECT * FROM `key` WHERE `id_key` =".$id.";";
         $bdd = connect();
         $uneKey = $bdd -> query($sql);
         $value = $uneKey -> fetch(PDO::FETCH_ASSOC);
         
+        //formate le formulaire de la page key_modif.php et pre rempli les champ pour l utilisateur
         echo "<form method=\"POST\" action=\"index.php?page2=gestion_key\" style=\"height:300px;\">
                 <div class='form_ajouter_key'>
                     <input name=\"id\" type=\"hidden\" value=\"".$value['id_key']."\"/>
@@ -155,11 +176,13 @@ class Key{
         
     }
     
+    //cree et rempli dynamiquement le tableau d affichage de la partie modif de gestion_key.php
     public static function listAlterKeysModif(){
         $sql = "SELECT * FROM `key` ORDER BY terme ASC";
         $bdd = connect();
         $desKeys = $bdd -> query($sql);
         
+        //le href revoi des parametres get pour changer la vue et afficher le formulaire de modif par rapport a l id
         foreach ($desKeys as $result){
             echo "<tr>
                     <td style=\"text-align:center;\">
@@ -173,11 +196,13 @@ class Key{
         }
     }
     
+    //cree et rempli dynamiquement le tableau d affichage de la partie supp de gestion_key.php
     public static function listAlterKeysSupp(){
         $sql = "SELECT * FROM `key` ORDER BY terme ASC";
         $bdd = connect();
         $desKeys = $bdd -> query($sql);
         
+        //l'utilisateur pourra ckeck plusieurs checkbox et elles seront renvoyer sous la forme d un tableau keys[]
         foreach ($desKeys as $result){
             echo "<tr>
                     <td style=\"text-align:center;\">
@@ -190,7 +215,8 @@ class Key{
                 </tr>";
         }
     }
-
+    
+    //permet de recup un key par rapport au resultat d une autre requete
     public static function findKey($query){
 
         $sql = "SELECT terme FROM `key` WHERE terme='" . $query . "'";
@@ -200,7 +226,9 @@ class Key{
         return $value["terme"];
 
     }
-
+    
+    //permet de retrouver une key existante par rapport a une key approximative entree par l utilisateur
+    //une suggestion est alors envoyer a l utilisateur via la vue
     public static function findSuggestedKey($query){
 
         $sql = "SELECT terme FROM `key` WHERE terme LIKE '%" . $query . "%'";
