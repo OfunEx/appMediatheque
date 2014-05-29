@@ -19,7 +19,8 @@ class Support{
     public function Support(){
 
     }
-
+    
+    //liste tous les supports present dans la bdd
     public static function listAllSupports(){
         $sql = "SELECT * FROM support";
         $bdd = connect();
@@ -38,7 +39,22 @@ class Support{
             . "<p>Description :<br>".$value['description_support']."</p></div>";
         }
     }
+    
+    //retourne toutes les clés lier a un support
+    public static function getKeysSupport($idS){
+        $sql = "SELECT terme FROM `key` INNER JOIN link ON key.id_key = link.id_key INNER JOIN support s ON link.id_support = s.id_support WHERE s.id_support = \"".$idS."\"";
+        $bdd = connect();
+        $desKeys = $bdd->query($sql);
+        foreach ($desKeys as $result){
+            echo "<tr>
+                    <td>
+                    <a href=\"index.php?page0=consul_key&redirecConsulKey=ok&terme=".$result['terme']."\" class=\"terme\">".$result['terme']."</a>
+                    </td>
+                </tr>";
+        }
+    }
 
+        //permet de faire apparaitre les supports page par page
     public static function supportPage($numPage){
         
         $sql = "SELECT * from support LIMIT " . $numPage * 6 . ", 6";
@@ -48,7 +64,7 @@ class Support{
 
         while($value = $requete -> fetch(PDO::FETCH_ASSOC)){
             echo "<div class=\"fiche_support\">"
-            . "<div class=\"titre_fiche\">".$value['titre_support']."</div>"
+            . "<a href=\"index.php?page0=consul_support&redirecConsulSupport=ok&id=".$value['id_support']."\" class=\"titre_fiche\">".$value['titre_support']."</a>"
             . "<p>Type du support : ".$value['type_support']." ; "
             . "Format : ".$value['type_format']." ; "
             . "Contenu : ".$value['type_contenu']." / "
@@ -58,11 +74,9 @@ class Support{
             . "Temps d'emprunt maximum : ".$value['tps_emprunt_max']."</p>"
             . "<p>Description :<br>".$value['description_support']."</p></div>";
         }
-
-
-
     }
-
+    
+    //permet d'ajouter un support
     public static function ajouterSupport($titreS,$typeS,$typeF,$typeC,$dateP,$auteurS,$typeA,$descri,$nbEx,$tps){
         $bdd = connect();
 
@@ -77,6 +91,7 @@ class Support{
         }
     }
     
+    //permet de modifier un support
     public static function modifierSupport($unId,$unTitre,$unTypeSup,$unTypeFormat,$unTypeContenu,$uneDate,
                                             $unCreateur,$unTypeCreat,$uneDescription,$unNbExamp,
                                             $unNbExampDispo,$unNbConsul,
@@ -121,6 +136,7 @@ class Support{
 
     }
     
+    //permet de supprimer un support
     public static function supprimerSupport($unIdSup){
 
         $bdd = connect();
@@ -140,7 +156,7 @@ class Support{
         
     }
 
-
+    //permet de supprimer plusieurs supports
         public static function supprimerSupports($supports){
         $bdd = connect();
         $compteur = 0;
@@ -160,7 +176,8 @@ class Support{
         }
         
     }
-
+    
+    //recupere le nombre de support
     public static function nombreSupport(){
         $sql = "SELECT COUNT(*) AS nbSupport FROM support";
         $bdd = connect();
@@ -172,7 +189,8 @@ class Support{
        return $value["nbSupport"];
         
     }
-
+    
+    //liste les supports pour l'affichage dans la partie modifier des supports
     public static function listAlterSupModif(){
         
         $sql = "SELECT * FROM `support` ORDER BY 'titre_support' ASC";
@@ -181,8 +199,8 @@ class Support{
         
         foreach ($desSup  as $result){
             echo "<tr>
-                    <td style=\"text-align:center;\">
-                        <a href=\"index.php?page2=gestion_support&redirecModif=ok&id=".$result['id_support']."\">".$result['titre_support']."</a>
+                    <td style=\"text-align:center;width:100px;\">
+                        <a href=\"index.php?page2=gestion_support&redirecModif=ok&id=".$result['id_support']."\" >".$result['titre_support']."</a>
                     </td>
                     
                     <td style=\"text-align:center;\">
@@ -202,7 +220,7 @@ class Support{
                     </td>
 
                     <td>
-                        <p>".$result['description_support']."</p>
+                        <p style=\"width:200px;height:100px;overflow:scroll;\">".$result['description_support']."</p>
                     </td>
 
                     <td>
@@ -219,22 +237,14 @@ class Support{
                     </td>
 
                     <td>
-                        <p>".$result['nbExemplaireDispo']."</p>
-                    </td>
-
-                    <td>
-                        <p>".$result['nb_consultation']."</p>
-                    </td>
-
-                    <td>
                         <p>".$result['tps_emprunt_max']."</p>
                     </td>
 
                 </tr>";
         }
-        
     }
-
+    
+    //liste les supports pour l'affichage dans la partie supprimer des supports
     public static function listAlterSupSupp(){
         
         $sql = "SELECT * FROM `support` ORDER BY 'titre_support' ASC";
@@ -244,7 +254,7 @@ class Support{
         foreach ($desSup  as $result){
             echo "<tr>
 
-                    <td style=\"text-align:center;\">
+                    <td style=\"text-align:center;width:100px;\">
                         <input type=\"checkbox\" name=\"supports[]\" value=\"".$result['id_support']."\">".$result['titre_support']."
                     </td>
                     
@@ -265,7 +275,7 @@ class Support{
                     </td>
 
                     <td>
-                        <p>".$result['description_support']."</p>
+                        <p style=\"width:200px;height:100px;overflow:scroll;\">".$result['description_support']."</p>
                     </td>
 
                     <td>
@@ -280,15 +290,7 @@ class Support{
                     <td>
                         <p>".$result['nbExemplaire']."</p>
                     </td>
-
-                    <td>
-                        <p>".$result['nbExemplaireDispo']."</p>
-                    </td>
-
-                    <td>
-                        <p>".$result['nb_consultation']."</p>
-                    </td>
-
+                    
                     <td>
                         <p>".$result['tps_emprunt_max']."</p>
                     </td>
@@ -297,7 +299,8 @@ class Support{
         }
         
     }
-
+    
+    //recupere un support par rapport a son identifiant
     public static function recup_support_id($id){
         $sql = "SELECT * FROM `support` WHERE `id_support` =".$id.";";
         $bdd = connect();
@@ -321,15 +324,8 @@ class Support{
 
 
         echo "<input id='submitModifier' type=\"submit\" name=\"ModifierSupport\" value=\"Valider\" style=\"margin-bottom: 30px;margin-left: 20px;\"/>";
-
-
-
     }
 
-
-
-    
-    
 }
 
 ?>

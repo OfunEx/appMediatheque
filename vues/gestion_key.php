@@ -4,8 +4,6 @@ $(function() {
         heightStyle: "content"
     });
     
-    $("#submitSupprimer").button();
-    
     $("#tabs").tabs();
     $("#dateP").datepicker();
     $("#submitAjouter").button();

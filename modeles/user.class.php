@@ -26,7 +26,6 @@ class User{
         return $this->level_user;
     }
 
-
     public static function emailExist($unEmail){
         //vérifie si un email existe déjà dans la base de donnée
 

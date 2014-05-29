@@ -28,13 +28,18 @@
         $idC = $desDonnees['idconnex_user'];
         $pass = $desDonnees['pass_user'];
         $level = $desDonnees['level_user'];
-        $user = new User($idU, $prenom, $nom, $date, $mail, $idC, $pass, $level);
+        //on instancie un objet user
+        $uti = new User($idU, $prenom, $nom, $date, $mail, $idC, $pass, $level);
         
-        if($user->getLevel() == 1){
+        if($uti->getLevel() == 1){
+            //et on le stock dans une variable de session
+            $user = serialize($uti);
             $_SESSION['user'] = $user;
             header('Location: index.php?page1=accueil_user');
         }
-        elseif ($user->getLevel() == 2){
+        elseif ($uti->getLevel() == 2){
+            //et on le stock dans une variable de session
+            $user = serialize($uti);
             $_SESSION['user'] = $user;
             header('Location: index.php?page2=accueil_admin');
         }
