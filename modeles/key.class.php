@@ -88,8 +88,10 @@ class Key{
         
     public static function ajouterKey($unTerme,$unCom){
         $bdd = connect();
+        
         $terme = $bdd->quote($unTerme);
         $com = $bdd->quote($unCom);
+        
         $requete = $bdd->exec("INSERT INTO `key`(`id_key`, `terme`, `commentaire`) "
                 . "VALUES ('',$terme,$com)");
 
@@ -101,14 +103,77 @@ class Key{
         }
     }
     
-//    public static function modifierKey(){
-//        
-//    }
-//    
-//    public static function supprimerKey(){
-//        
-//    }
+    public static function modifierKey($unId,$unTerme,$unCom){
+        $bdd = connect();
+        
+        $id = $bdd->quote($unId);
+        $terme = $bdd->quote($unTerme);
+        $com = $bdd->quote($unCom);
+        
+        $sql = "UPDATE `key` SET id_key = ".$id.", `terme` = ".$terme.", `commentaire` = ".$com." WHERE `id_key` = ".$unId.";";
+        
+        $requete = $bdd -> query($sql);
+        
+    }
+    
+    public static function supprimerKey(){
+        
+    }
+    
+    public static function recup_key_id($id){
+        $sql = "SELECT * FROM `key` WHERE `id_key` =".$id.";";
+        $bdd = connect();
+        $uneKey = $bdd -> query($sql);
+        $value = $uneKey -> fetch(PDO::FETCH_ASSOC);
+        
+        echo "<form method=\"POST\" action=\"index.php?page2=gestion_key\" style=\"height:300px;\">
+                <div class='form_ajouter_key'>
+                    <input name=\"id\" type=\"hidden\" value=\"".$value['id_key']."\"/>
+                    <div style=\"float:left;margin-right:20px;margin-left:20px;\">Terme :&nbsp;<input id=\"terme\" name=\"terme\" type=text style=\"text-align: left;\" value=\"".$value['terme']."\"/></div>
 
+                    <div style=\"float:left;\">Commentaire :&nbsp;</div><div style=\"float:left;\"><textarea id=\"com\" name=\"com\" type=text rows=2 COLS=20 maxWidth=\"200\" style=\"text-align: left;width:500px;height:200px;\">".$value['commentaire']."</textarea></div>
+
+                <div style=\"float:left;\"><input id='submitModifier' type=\"submit\" name=\"ModifierKey\" value=\"Valider\" style=\"margin-bottom: 30px;margin-left: 20px;\"/></div>
+                </div>
+            </form>";
+        
+    }
+    
+    public static function listAlterKeysModif(){
+        $sql = "SELECT * FROM `key` ORDER BY terme ASC";
+        $bdd = connect();
+        $desKeys = $bdd -> query($sql);
+        
+        foreach ($desKeys as $result){
+            echo "<tr>
+                    <td style=\"text-align:center;\">
+                    <a href=\"index.php?page2=gestion_key&redirecModif=ok&id=".$result['id_key']."\">".$result['terme']."</a>
+                    </td>
+                    
+                    <td>
+                    <p style=\"height:100px;overflow:scroll;\">".$result['commentaire']."</p>
+                    </td>
+                </tr>";
+        }
+    }
+    
+    public static function listAlterKeysSupp(){
+        $sql = "SELECT * FROM `key` ORDER BY terme ASC";
+        $bdd = connect();
+        $desKeys = $bdd -> query($sql);
+        
+        foreach ($desKeys as $result){
+            echo "<tr>
+                    <td style=\"text-align:center;\">
+                    <input type=\"checkbox\" name=\"keys\" value=\"".$result['id_key']."\">".$result['terme']."
+                    </td>
+                    
+                    <td>
+                    <p style=\"height:70px;overflow:scroll;\">".$result['commentaire']."</p>
+                    </td>
+                </tr>";
+        }
+    }
 
     public static function findKey($query){
 

@@ -21,6 +21,10 @@ class User{
         $this->pass_user = $pass;
         $this->level_user = $level;
     }
+    
+    public function getLevel(){
+        return $this->level_user;
+    }
 
 
     public static function emailExist($unEmail){
